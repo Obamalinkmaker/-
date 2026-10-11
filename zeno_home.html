@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08101d">
+<title>Zeno — Games & Apps</title>
+<style>
+:root{color-scheme:dark;--bg:#08101d;--panel:#101b2d;--panel2:#15243a;--line:#263955;--text:#eff6ff;--muted:#9cb0cc;--mint:#65f4d0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,Segoe UI,sans-serif}button,input{font:inherit}button,a{cursor:pointer}a{color:inherit;text-decoration:none}
+.top{height:72px;display:flex;align-items:center;gap:28px;padding:0 22px;border-bottom:1px solid var(--line);background:#08101df5;position:sticky;top:0;z-index:5}.brand{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:900;min-width:205px}.mark{width:40px;height:40px;background:var(--mint);color:#061520;border-radius:12px;display:grid;place-items:center;font-size:26px;font-weight:1000}.search{max-width:560px;flex:1;position:relative}.search input{width:100%;padding:13px 16px 13px 42px;background:#111f34;border:1px solid #2a3b57;border-radius:13px;color:white;outline:none}.search input:focus{border-color:var(--mint)}.search span{position:absolute;left:15px;top:10px;font-size:20px;color:var(--muted)}.topright{margin-left:auto;display:flex;gap:16px;color:#c8d8ef;font-size:21px}
+.layout{display:grid;grid-template-columns:205px minmax(0,1fr);min-height:calc(100vh - 72px)}aside{border-right:1px solid var(--line);padding:18px 12px;background:#0a1424}.nav{display:flex;flex-direction:column;gap:7px;position:sticky;top:90px}.nav button{border:0;background:transparent;color:#c4d4e9;text-align:left;padding:12px;border-radius:11px;display:flex;gap:13px;align-items:center}.nav button.active,.nav button:hover{background:var(--mint);color:#071720;font-weight:800}.nav .ico{font-size:20px;width:24px;text-align:center}.asidehint{margin:28px 8px;color:#7085a4;font-size:11px;text-transform:uppercase;letter-spacing:1.5px}
+main{padding:20px;min-width:0;max-width:1700px;width:100%;margin:0 auto}.hero{min-height:145px;border:1px solid #213650;border-radius:16px;padding:25px 28px;display:flex;align-items:center;gap:20px;background:radial-gradient(ellipse at 78% 30%,#164d5a 0,transparent 36%),linear-gradient(120deg,#101f36,#091322);overflow:hidden}.heroMark{height:88px;width:88px;flex-shrink:0;border-radius:23px;background:var(--mint);color:#061520;display:grid;place-items:center;font-size:62px;font-weight:1000}.hero h1{font-size:35px;letter-spacing:-1.5px;margin:0 0 4px}.hero p{margin:0;color:#adc3dd}.hero small{display:block;color:var(--mint);font-weight:700;margin-top:8px}.heroart{margin-left:auto;font-size:68px;opacity:.8}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 10px}.pill{background:#111f34;border:1px solid #243955;border-radius:11px;color:#d8e6f7;padding:9px 16px}.pill.active,.pill:hover{background:var(--mint);border-color:var(--mint);color:#071720;font-weight:800}.cats{margin:12px 0 20px}.section{margin-top:22px}.secthead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.secthead h2{margin:0;font-size:19px}.secthead p{margin:3px 0 0;color:var(--muted);font-size:12px}.viewall{background:none;border:0;color:var(--mint)}.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.gamecard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0;transition:transform .15s,border-color .15s}.gamecard:hover{transform:translateY(-2px);border-color:#4f8e93}.thumb{height:100px;display:grid;place-items:center;font-size:42px;background:linear-gradient(135deg,#1b3e56,#14243c);position:relative}.thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0d1728aa,transparent 65%)}.thumb span{z-index:1;filter:drop-shadow(0 5px 8px #0008)}.gameinfo{padding:9px}.gameinfo strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}.gameinfo small{color:var(--muted);font-size:11px}.gameinfo button{display:block;width:100%;margin-top:8px;border:0;background:#1b3047;color:var(--mint);border-radius:7px;padding:6px;font-weight:700;font-size:11px}
+.appgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.appcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px;display:flex;align-items:center;gap:12px}.appicon{width:43px;height:43px;border-radius:12px;background:#1b2c44;display:grid;place-items:center;font-size:22px;flex-shrink:0}.appcard strong{display:block}.appcard small{color:var(--muted)}
+.panel{display:none;background:#091321;border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-top:16px}.panelhead{padding:13px 16px;background:#111e31;display:flex;align-items:center;justify-content:space-between}.panelhead button{background:#23354d;border:0;color:white;padding:7px 10px;border-radius:8px}.panelbody{padding:18px}.gameframe{width:100%;height:min(68vh,700px);background:#05080e;border:0;display:block}.frameplaceholder{min-height:260px;display:grid;place-items:center;text-align:center;padding:25px;color:var(--muted)}.frameplaceholder strong{display:block;color:white;font-size:22px;margin:8px}.frameplaceholder a{display:inline-block;background:var(--mint);color:#061520;padding:10px 15px;border-radius:9px;font-weight:800;margin:12px}.empty{padding:32px;text-align:center;color:var(--muted);grid-column:1/-1}.notice{font-size:12px;color:#8195b1;margin:22px 0 8px}.hidden{display:none!important}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.heroart{font-size:48px}}@media(max-width:800px){.layout{grid-template-columns:1fr}.top{padding:0 12px;gap:12px}.brand{min-width:0;font-size:21px}.brand .mark{width:35px;height:35px}.topright{display:none}aside{border-right:0;border-bottom:1px solid var(--line);padding:8px}.nav{position:static;flex-direction:row;overflow-x:auto}.nav button{white-space:nowrap;padding:9px 11px}.asidehint{display:none}main{padding:12px}.hero{padding:18px}.heroMark{width:60px;height:60px;font-size:42px}.hero h1{font-size:27px}.heroart{display:none}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.appgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){.search input{padding:10px 10px 10px 34px}.search span{top:7px;left:10px}.heroMark{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.thumb{height:90px}.appcard{padding:10px}.appicon{width:36px;height:36px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#" data-nav="Home"><span class="mark">Z</span><span>Zeno</span></a>
+  <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search games, apps, or anything…" aria-label="Search games and apps"></label>
+  <div class="topright" aria-hidden="true">☼　♧　Ⓩ</div>
+</header>
+<div class="layout">
+<aside><nav class="nav" aria-label="Main navigation">
+<button class="active" data-nav="Home"><span class="ico">⌂</span>Home</button>
+<button data-nav="Games"><span class="ico">🎮</span>Games</button>
+<button data-nav="Apps"><span class="ico">▦</span>Apps</button>
+<button data-nav="Favorites"><span class="ico">♡</span>Favorites</button>
+<button data-nav="Settings"><span class="ico">⚙</span>Settings</button>
+</nav><div class="asidehint">Your space, your way</div></aside>
+<main>
+<section id="homeView">
+<div class="hero"><div class="heroMark">Z</div><div><h1>Zeno</h1><p>Play · Watch · Explore</p><small>All your favorite games and apps in one place.</small></div><div class="heroart">🎮</div></div>
+<div class="pills sourcefilters"><button class="pill active" data-source="All">All Games</button><button class="pill" data-source="DuckMath">DuckMath</button><button class="pill" data-source="StrongDog">StrongDog</button></div>
+<div class="pills cats" id="categories"><button class="pill active" data-category="All">All</button><button class="pill" data-category="Action">Action</button><button class="pill" data-category="Adventure">Adventure</button><button class="pill" data-category="Arcade">Arcade</button><button class="pill" data-category="Driving">Driving</button><button class="pill" data-category="Fighting">Fighting</button><button class="pill" data-category="Platformer">Platformer</button><button class="pill" data-category="Puzzle">Puzzle</button><button class="pill" data-category="Racing">Racing</button><button class="pill" data-category="Sports">Sports</button></div>
+<div id="gameSections"></div>
+<div class="section"><div class="secthead"><div><h2>Apps</h2><p>Shortcuts to your favorite sites</p></div><button class="viewall" data-nav="Apps">View all →</button></div><div id="homeApps" class="appgrid"></div></div>
+<div class="notice">Game catalog retrieval depends on what each source exposes publicly. Games that prohibit embedding may need to open through their supported page; Zeno cannot bypass those restrictions.</div>
+</section>
+<section id="gamesView" class="hidden"><div class="secthead"><div><h2>All Games</h2><p>Browse the game catalog by source and category.</p></div></div><div class="pills sourcefilters"><button class="pill active" data-source="All">All Games</button><button class="pill" data-source="DuckMath">DuckMath</button><button class="pill" data-source="StrongDog">StrongDog</button></div><div class="pills cats"><button class="pill active" data-category="All">All</button><button class="pill" data-category="Action">Action</button><button class="pill" data-category="Arcade">Arcade</button><button class="pill" data-category="Driving">Driving</button><button class="pill" data-category="Platformer">Platformer</button><button class="pill" data-category="Puzzle">Puzzle</button><button class="pill" data-category="Sports">Sports</button></div><div id="allGamesGrid" class="grid"></div></section>
+<section id="appsView" class="hidden"><div class="secthead"><div><h2>Apps</h2><p>Listen, watch, and explore.</p></div></div><div id="allApps" class="appgrid"></div></section>
+<section id="favoritesView" class="hidden"><div class="secthead"><div><h2>Favorites</h2><p>Your saved games on this device.</p></div></div><div id="favoritesGrid" class="grid"></div></section>
+<section id="settingsView" class="hidden"><div class="secthead"><div><h2>Settings</h2><p>Zeno preferences</p></div></div><div class="appcard"><div class="appicon">🎮</div><div><strong>Game launch behavior</strong><small>Compatible games load in Zeno's player. Some sites block embedding.</small></div></div><p class="notice">Favorites are stored locally in this browser. This starter build does not bypass website restrictions or scrape protected endpoints.</p></section>
+<div class="panel" id="playerPanel"><div class="panelhead"><strong id="playerTitle">Zeno Player</strong><button id="closePlayer">← Back to games</button></div><div id="playerBody"></div></div>
+</main></div>
+<script>
+const apps=[
+{name:'SoundCloud',desc:'Music & audio',icon:'☁️',url:'https://soundcloud.com',key:'soundcloud music audio'},
+{name:'YouTube',desc:'Videos & creators',icon:'▶️',url:'https://youtube.com',key:'youtube videos'},
+{name:'TikTok',desc:'Short videos',icon:'♪',url:'https://tiktok.com',key:'tiktok shorts'},
+{name:'Instagram',desc:'Photos & Reels',icon:'◎',url:'https://instagram.com',key:'instagram photos reels'}
+];
+// Starter examples. Live full-catalog import can only be populated from game data the source sites publicly expose.
+const games=[
+{name:'Slope',source:'DuckMath',category:'Arcade',emoji:'🟢',url:'https://duckmath.org',key:'slope ball arcade'},
+{name:'Run 3',source:'DuckMath',category:'Platformer',emoji:'🏃',url:'https://duckmath.org',key:'run 3 platformer'},
+{name:'Retro Bowl',source:'DuckMath',category:'Sports',emoji:'🏈',url:'https://duckmath.org',key:'retro bowl sports'},
+{name:'Moto X3M',source:'DuckMath',category:'Racing',emoji:'🏍️',url:'https://duckmath.org',key:'moto x3m racing driving'},
+{name:'Happy Wheels',source:'DuckMath',category:'Racing',emoji:'🚲',url:'https://duckmath.org',key:'happy wheels'},
+{name:'Geometry Dash',source:'DuckMath',category:'Arcade',emoji:'🟨',url:'https://duckmath.org',key:'geometry dash arcade'},
+{name:'Drive Mad',source:'StrongDog',category:'Driving',emoji:'🚙',url:'https://strongdog.com',key:'drive mad driving'},
+{name:'Time Shooter 3',source:'StrongDog',category:'Action',emoji:'🎯',url:'https://strongdog.com',key:'time shooter 3 action'},
+{name:'Ragdoll Playground',source:'StrongDog',category:'Adventure',emoji:'🪵',url:'https://strongdog.com',key:'ragdoll playground'},
+{name:'Stickman Fighter',source:'StrongDog',category:'Fighting',emoji:'🥷',url:'https://strongdog.com',key:'stickman fighter'},
+{name:'Basketball Legends',source:'StrongDog',category:'Sports',emoji:'🏀',url:'https://strongdog.com',key:'basketball legends'},
+{name:'Kingdom Rush',source:'StrongDog',category:'Adventure',emoji:'🏰',url:'https://strongdog.com',key:'kingdom rush strategy'}
+];
+let source='All',category='All',query='',currentPage='Home';
+let favorites=new Set();
+try{favorites=new Set(JSON.parse(localStorage.getItem('zeno-favorites')||'[]'))}catch(e){}
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function appCard(a){return `<a class="appcard" href="${a.url}" target="_blank" rel="noopener noreferrer" data-key="${a.key}"><span class="appicon">${a.icon}</span><span><strong>${a.name}</strong><small>${a.desc}</small></span></a>`}
+function gameCard(g){return `<article class="gamecard" data-key="${g.key}"><div class="thumb"><span>${g.emoji}</span></div><div class="gameinfo"><strong title="${g.name}">${g.name}</strong><small>${g.category} · ${g.source}</small><button data-play="${g.name}">Play in Zeno ↗</button><button data-fav="${g.name}">${favorites.has(g.name)?'♥ Saved':'♡ Favorite'}</button></div></article>`}
+function filtered(){return games.filter(g=>(source==='All'||g.source===source)&&(category==='All'||g.category===category)&&(!query||(g.name+' '+g.source+' '+g.category+' '+g.key).toLowerCase().includes(query)))}
+function renderGames(){
+ const list=filtered();
+ const groups=[['DuckMath Games','🦆','DuckMath'],['StrongDog Games','🐶','StrongDog'],['Popular & Trending','🔥','All']];
+ $('#gameSections').innerHTML=groups.map(([title,emoji,src])=>{const arr=list.filter(g=>src==='All'||g.source===src);if(!arr.length)return '';return `<section class="section"><div class="secthead"><div><h2>${emoji}　${title}</h2><p>${src==='All'?'A mix of both libraries':`Catalog source: ${src}`}</p></div><button class="viewall" data-show-source="${src}">View all →</button></div><div class="grid">${arr.map(gameCard).join('')}</div></section>`}).join('')||'<div class="empty">No matching games. Try another search or category.</div>';
+ $('#allGamesGrid').innerHTML=list.map(gameCard).join('')||'<div class="empty">No matching games.</div>';
+ const fav=games.filter(g=>favorites.has(g.name));$('#favoritesGrid').innerHTML=fav.map(gameCard).join('')||'<div class="empty">No favorites yet. Use ♡ Favorite on a game card to save one.</div>';
+}
+function renderApps(){$('#homeApps').innerHTML=apps.map(appCard).join('');$('#allApps').innerHTML=apps.map(appCard).join('')}
+function nav(page){currentPage=page;['Home','Games','Apps','Favorites','Settings'].forEach(p=>{const el=$('#'+p.toLowerCase()+'View');if(el)el.classList.toggle('hidden',p!==page)});$$('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===page));$('#playerPanel').style.display='none';window.scrollTo({top:0,behavior:'smooth'});if(page==='Games')renderGames()}
+function play(name){const g=games.find(x=>x.name===name);if(!g)return;$('#playerTitle').textContent=name+' · Zeno Player';$('#playerBody').innerHTML=`<div class="frameplaceholder"><div><div style="font-size:46px">${g.emoji}</div><strong>${g.name}</strong><p>This source's playable URL has not been imported into this starter catalog yet. Zeno needs the game's direct, embeddable URL to run it here.</p><a href="${g.url}" target="_blank" rel="noopener noreferrer">Open ${g.source} source ↗</a><p style="font-size:12px">The source homepage is used as a fallback; this is not an embedded game session.</p></div></div>`;$('#playerPanel').style.display='block';$('#playerPanel').scrollIntoView({behavior:'smooth',block:'start'})}
+document.addEventListener('click',e=>{const n=e.target.closest('[data-nav]');if(n){e.preventDefault();nav(n.dataset.nav);return}const p=e.target.closest('[data-play]');if(p){play(p.dataset.play);return}const f=e.target.closest('[data-fav]');if(f){const name=f.dataset.fav;favorites.has(name)?favorites.delete(name):favorites.add(name);try{localStorage.setItem('zeno-favorites',JSON.stringify([...favorites]))}catch(e){}renderGames();return}const s=e.target.closest('[data-source]');if(s){source=s.dataset.source;$$('[data-source]').forEach(b=>b.classList.toggle('active',b.dataset.source===source));renderGames();return}const c=e.target.closest('[data-category]');if(c){category=c.dataset.category;$$('[data-category]').forEach(b=>b.classList.toggle('active',b.dataset.category===category));renderGames();return}const v=e.target.closest('[data-show-source]');if(v){source=v.dataset.showSource;nav('Games');$$('[data-source]').forEach(b=>b.classList.toggle('active',b.dataset.source===source));renderGames()}});
+$('#search').addEventListener('input',e=>{query=e.target.value.trim().toLowerCase();renderGames();if(query&&currentPage==='Apps'){$$('#allApps .appcard').forEach(a=>a.classList.toggle('hidden',!a.dataset.key.includes(query)))}});
+$('#closePlayer').addEventListener('click',()=>{$('#playerPanel').style.display='none';window.scrollTo({top:0,behavior:'smooth'})});
+renderApps();renderGames();
+</script>
+</body></html>
